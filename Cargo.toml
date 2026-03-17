@@ -3,4 +3,24 @@ name = "async-rust-playground"
 version = "0.1.0"
 edition = "2024"
 
+[lints.rust]
+unused_imports = "allow"
+unused_macros = "allow"
+
 [dependencies]
+futures = "0.3"
+signal-hook = "0.4"
+smol = "2"
+tokio = { version = "1", features = ["full"] }
+
+[[bin]]
+name = "case0"
+test = false
+
+[[bin]]
+name = "case1"
+test = false
+
+[[bin]]
+name = "timer"
+test = false
