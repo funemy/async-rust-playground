@@ -1,0 +1,511 @@
+// WARNING: This output format is intended for human consumers only
+// and is subject to change without notice. Knock yourself out.
+// HINT: See also -Z dump-mir for MIR at specific points during compilation.
+fn case1() -> {async fn body of case1()} {
+    let mut _0: {async fn body of case1()};
+
+    bb0: {
+        _0 = {coroutine@src/bin/case1.rs:7:18: 19:2 (#0)};
+        return;
+    }
+}
+
+fn case1::{closure#0}(_1: Pin<&mut {async fn body of case1()}>, _2: &mut Context<'_>) -> Poll<()> {
+    debug _task_context => _2;
+    let mut _0: std::task::Poll<()>;
+    let _3: ();
+    let mut _4: std::fmt::Arguments<'_>;
+    let _5: ();
+    let mut _6: std::fmt::Arguments<'_>;
+    let _7: smol::Timer;
+    let mut _8: std::time::Duration;
+    let mut _9: std::time::Duration;
+    let mut _10: smol::Timer;
+    let mut _11: smol::Timer;
+    let mut _12: std::task::Poll<std::time::Instant>;
+    let mut _13: std::pin::Pin<&mut smol::Timer>;
+    let mut _14: &mut smol::Timer;
+    let mut _15: &mut std::task::Context<'_>;
+    let mut _16: isize;
+    let mut _18: &mut std::task::Context<'_>;
+    let mut _19: smol::Timer;
+    let mut _20: smol::Timer;
+    let mut _21: std::task::Poll<std::time::Instant>;
+    let mut _22: std::pin::Pin<&mut smol::Timer>;
+    let mut _23: &mut smol::Timer;
+    let mut _24: &mut std::task::Context<'_>;
+    let mut _25: isize;
+    let mut _27: &mut std::task::Context<'_>;
+    let _28: ();
+    let mut _29: std::fmt::Arguments<'_>;
+    let _30: ();
+    let mut _31: std::fmt::Arguments<'_>;
+    let mut _33: &i32;
+    let mut _35: core::fmt::rt::Argument<'_>;
+    let mut _36: &[u8; 11];
+    let _37: &[core::fmt::rt::Argument<'_>; 1];
+    let mut _38: &i32;
+    let mut _39: u32;
+    let mut _40: &mut {async fn body of case1()};
+    let mut _41: &mut i32;
+    scope 1 {
+        debug timer => _7;
+        scope 2 {
+            debug timer2 => (((*_40) as variant#3).0: smol::Timer);
+            scope 3 {
+                debug x => (((*_40) as variant#4).0: i32);
+                scope 4 {
+                    debug y => (((*_40) as variant#3).2: &mut i32);
+                    let _32: (&i32,);
+                    scope 5 {
+                        debug __awaitee => (((*_40) as variant#3).3: smol::Timer);
+                        let _17: std::time::Instant;
+                        scope 6 {
+                            debug result => _17;
+                        }
+                    }
+                    scope 7 {
+                        debug __awaitee => (((*_40) as variant#4).1: smol::Timer);
+                        let _26: std::time::Instant;
+                        scope 8 {
+                            debug result => _26;
+                        }
+                    }
+                    scope 9 {
+                        debug args => _32;
+                        let _34: [core::fmt::rt::Argument<'_>; 1];
+                        scope 10 {
+                            debug args => _34;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    bb0: {
+        _40 = copy (_1.0: &mut {async fn body of case1()});
+        _39 = discriminant((*_40));
+        switchInt(move _39) -> [0: bb1, 1: bb41, 2: bb40, 3: bb38, 4: bb39, otherwise: bb14];
+    }
+
+    bb1: {
+        (((*_40) as variant#4).3: bool) = const false;
+        (((*_40) as variant#4).2: bool) = const false;
+        _4 = Arguments::<'_>::from_str(const "hello\n") -> [return: bb2, unwind: bb37];
+    }
+
+    bb2: {
+        _3 = _print(move _4) -> [return: bb3, unwind: bb37];
+    }
+
+    bb3: {
+        _6 = Arguments::<'_>::from_str(const "start waiting 6s!!\n") -> [return: bb4, unwind: bb37];
+    }
+
+    bb4: {
+        _5 = _print(move _6) -> [return: bb5, unwind: bb37];
+    }
+
+    bb5: {
+        _8 = Duration::from_secs(const 6_u64) -> [return: bb6, unwind: bb33];
+    }
+
+    bb6: {
+        _7 = Timer::after(move _8) -> [return: bb7, unwind: bb33];
+    }
+
+    bb7: {
+        (((*_40) as variant#4).3: bool) = const true;
+        _9 = Duration::from_secs(const 6_u64) -> [return: bb8, unwind: bb32];
+    }
+
+    bb8: {
+        (((*_40) as variant#3).0: smol::Timer) = Timer::after(move _9) -> [return: bb9, unwind: bb32];
+    }
+
+    bb9: {
+        (((*_40) as variant#4).2: bool) = const true;
+        (((*_40) as variant#4).0: i32) = const 42_i32;
+        (((*_40) as variant#3).2: &mut i32) = &mut (((*_40) as variant#4).0: i32);
+        (((*_40) as variant#4).3: bool) = const false;
+        _11 = move _7;
+        _10 = <Timer as std::future::IntoFuture>::into_future(move _11) -> [return: bb10, unwind: bb35];
+    }
+
+    bb10: {
+        (((*_40) as variant#3).3: smol::Timer) = move _10;
+        goto -> bb11;
+    }
+
+    bb11: {
+        _14 = &mut (((*_40) as variant#3).3: smol::Timer);
+        _13 = Pin::<&mut Timer>::new_unchecked(copy _14) -> [return: bb12, unwind: bb31];
+    }
+
+    bb12: {
+        _15 = copy _2;
+        _12 = <Timer as futures::Future>::poll(move _13, copy _15) -> [return: bb13, unwind: bb31];
+    }
+
+    bb13: {
+        _16 = discriminant(_12);
+        switchInt(move _16) -> [0: bb16, 1: bb15, otherwise: bb14];
+    }
+
+    bb14: {
+        unreachable;
+    }
+
+    bb15: {
+        _0 = Poll::<()>::Pending;
+        discriminant((*_40)) = 3;
+        return;
+    }
+
+    bb16: {
+        _17 = copy ((_12 as Ready).0: std::time::Instant);
+        drop((((*_40) as variant#3).3: smol::Timer)) -> [return: bb17, unwind: bb35];
+    }
+
+    bb17: {
+        _41 = copy (((*_40) as variant#3).2: &mut i32);
+        (*_41) = const 43_i32;
+        (((*_40) as variant#4).2: bool) = const false;
+        _20 = move (((*_40) as variant#3).0: smol::Timer);
+        _19 = <Timer as std::future::IntoFuture>::into_future(move _20) -> [return: bb18, unwind: bb35];
+    }
+
+    bb18: {
+        (((*_40) as variant#4).1: smol::Timer) = move _19;
+        goto -> bb19;
+    }
+
+    bb19: {
+        _23 = &mut (((*_40) as variant#4).1: smol::Timer);
+        _22 = Pin::<&mut Timer>::new_unchecked(copy _23) -> [return: bb20, unwind: bb30];
+    }
+
+    bb20: {
+        _24 = copy _2;
+        _21 = <Timer as futures::Future>::poll(move _22, copy _24) -> [return: bb21, unwind: bb30];
+    }
+
+    bb21: {
+        _25 = discriminant(_21);
+        switchInt(move _25) -> [0: bb23, 1: bb22, otherwise: bb14];
+    }
+
+    bb22: {
+        _0 = Poll::<()>::Pending;
+        discriminant((*_40)) = 4;
+        return;
+    }
+
+    bb23: {
+        _26 = copy ((_21 as Ready).0: std::time::Instant);
+        drop((((*_40) as variant#4).1: smol::Timer)) -> [return: bb24, unwind: bb35];
+    }
+
+    bb24: {
+        _29 = Arguments::<'_>::from_str(const "done waiting 6s!!\n") -> [return: bb25, unwind: bb35];
+    }
+
+    bb25: {
+        _28 = _print(move _29) -> [return: bb26, unwind: bb35];
+    }
+
+    bb26: {
+        _33 = &(((*_40) as variant#4).0: i32);
+        _32 = (move _33,);
+        _38 = copy (_32.0: &i32);
+        _35 = core::fmt::rt::Argument::<'_>::new_display::<i32>(copy _38) -> [return: bb27, unwind: bb35];
+    }
+
+    bb27: {
+        _34 = [move _35];
+        _36 = const b"\x06world \xc0\x01\n\x00";
+        _37 = &_34;
+        _31 = Arguments::<'_>::new::<11, 1>(move _36, copy _37) -> [return: bb28, unwind: bb35];
+    }
+
+    bb28: {
+        _30 = _print(move _31) -> [return: bb29, unwind: bb35];
+    }
+
+    bb29: {
+        (((*_40) as variant#4).2: bool) = const false;
+        (((*_40) as variant#4).3: bool) = const false;
+        _0 = Poll::<()>::Ready(const ());
+        discriminant((*_40)) = 1;
+        return;
+    }
+
+    bb30 (cleanup): {
+        drop((((*_40) as variant#4).1: smol::Timer)) -> [return: bb35, unwind terminate(cleanup)];
+    }
+
+    bb31 (cleanup): {
+        drop((((*_40) as variant#3).3: smol::Timer)) -> [return: bb35, unwind terminate(cleanup)];
+    }
+
+    bb32 (cleanup): {
+        (((*_40) as variant#4).2: bool) = const false;
+        switchInt(copy (((*_40) as variant#4).3: bool)) -> [0: bb33, otherwise: bb36];
+    }
+
+    bb33 (cleanup): {
+        (((*_40) as variant#4).3: bool) = const false;
+        goto -> bb37;
+    }
+
+    bb34 (cleanup): {
+        drop((((*_40) as variant#3).0: smol::Timer)) -> [return: bb32, unwind terminate(cleanup)];
+    }
+
+    bb35 (cleanup): {
+        switchInt(copy (((*_40) as variant#4).2: bool)) -> [0: bb32, otherwise: bb34];
+    }
+
+    bb36 (cleanup): {
+        drop(_7) -> [return: bb33, unwind terminate(cleanup)];
+    }
+
+    bb37 (cleanup): {
+        discriminant((*_40)) = 2;
+        resume;
+    }
+
+    bb38: {
+        _18 = move _2;
+        _2 = move _18;
+        goto -> bb11;
+    }
+
+    bb39: {
+        _27 = move _2;
+        _2 = move _27;
+        goto -> bb19;
+    }
+
+    bb40: {
+        assert(const false, "`async fn` resumed after panicking") -> [success: bb40, unwind continue];
+    }
+
+    bb41: {
+        assert(const false, "`async fn` resumed after completion") -> [success: bb41, unwind continue];
+    }
+}
+
+alloc4 (size: 11, align: 1) {
+    06 77 6f 72 6c 64 20 c0 01 0a 00                │ .world ....
+}
+
+alloc3 (size: 18, align: 1) {
+    0x00 │ 64 6f 6e 65 20 77 61 69 74 69 6e 67 20 36 73 21 │ done waiting 6s!
+    0x10 │ 21 0a                                           │ !.
+}
+
+alloc2 (size: 19, align: 1) {
+    0x00 │ 73 74 61 72 74 20 77 61 69 74 69 6e 67 20 36 73 │ start waiting 6s
+    0x10 │ 21 21 0a                                        │ !!.
+}
+
+alloc1 (size: 6, align: 1) {
+    68 65 6c 6c 6f 0a                               │ hello.
+}
+
+fn main() -> () {
+    let mut _0: ();
+    let _1: {async block@src/bin/case1.rs:21:1: 21:15};
+    let mut _3: &tokio::runtime::Runtime;
+    let _4: tokio::runtime::Runtime;
+    let mut _5: std::result::Result<tokio::runtime::Runtime, std::io::Error>;
+    let mut _6: &mut tokio::runtime::Builder;
+    let mut _7: &mut tokio::runtime::Builder;
+    let mut _8: tokio::runtime::Builder;
+    let mut _9: &str;
+    let mut _10: {async block@src/bin/case1.rs:21:1: 21:15};
+    let mut _11: bool;
+    scope 1 {
+        debug body => _1;
+        let _2: {async block@src/bin/case1.rs:21:1: 21:15};
+        scope 2 {
+            debug body => _2;
+            scope 4 {
+            }
+        }
+        scope 3 {
+        }
+    }
+
+    bb0: {
+        _11 = const false;
+        _1 = {coroutine@src/bin/case1.rs:21:1: 21:15 (#16)};
+        _11 = const true;
+        _2 = move _1;
+        _8 = tokio::runtime::Builder::new_multi_thread() -> [return: bb1, unwind: bb12];
+    }
+
+    bb1: {
+        _7 = &mut _8;
+        _6 = tokio::runtime::Builder::enable_all(move _7) -> [return: bb2, unwind: bb9];
+    }
+
+    bb2: {
+        _5 = tokio::runtime::Builder::build(copy _6) -> [return: bb3, unwind: bb9];
+    }
+
+    bb3: {
+        _9 = const "Failed building the Runtime";
+        _4 = Result::<Runtime, std::io::Error>::expect(move _5, move _9) -> [return: bb4, unwind: bb9];
+    }
+
+    bb4: {
+        _3 = &_4;
+        _11 = const false;
+        _10 = move _2;
+        _0 = Runtime::block_on::<{async block@src/bin/case1.rs:21:1: 21:15}>(move _3, move _10) -> [return: bb5, unwind: bb8];
+    }
+
+    bb5: {
+        drop(_4) -> [return: bb6, unwind: bb9];
+    }
+
+    bb6: {
+        drop(_8) -> [return: bb7, unwind: bb12];
+    }
+
+    bb7: {
+        _11 = const false;
+        return;
+    }
+
+    bb8 (cleanup): {
+        drop(_4) -> [return: bb9, unwind terminate(cleanup)];
+    }
+
+    bb9 (cleanup): {
+        drop(_8) -> [return: bb12, unwind terminate(cleanup)];
+    }
+
+    bb10 (cleanup): {
+        resume;
+    }
+
+    bb11 (cleanup): {
+        drop(_2) -> [return: bb10, unwind terminate(cleanup)];
+    }
+
+    bb12 (cleanup): {
+        switchInt(copy _11) -> [0: bb10, otherwise: bb11];
+    }
+}
+
+alloc5 (size: 27, align: 1) {
+    0x00 │ 46 61 69 6c 65 64 20 62 75 69 6c 64 69 6e 67 20 │ Failed building 
+    0x10 │ 74 68 65 20 52 75 6e 74 69 6d 65                │ the Runtime
+}
+
+fn main::{closure#0}(_1: Pin<&mut {async block@src/bin/case1.rs:21:1: 21:15}>, _2: &mut Context<'_>) -> Poll<()> {
+    debug _task_context => _2;
+    let mut _0: std::task::Poll<()>;
+    let _3: {async fn body of case1()};
+    let mut _4: {async fn body of case1()};
+    let mut _5: std::task::Poll<()>;
+    let mut _6: std::pin::Pin<&mut {async fn body of case1()}>;
+    let mut _7: &mut {async fn body of case1()};
+    let mut _8: &mut std::task::Context<'_>;
+    let mut _9: isize;
+    let mut _11: &mut std::task::Context<'_>;
+    let mut _12: u32;
+    let mut _13: &mut {async block@src/bin/case1.rs:21:1: 21:15};
+    scope 1 {
+        debug future => _3;
+        scope 2 {
+            debug __awaitee => (((*_13) as variant#3).0: {async fn body of case1()});
+            let _10: ();
+            scope 3 {
+                debug result => _10;
+            }
+        }
+    }
+
+    bb0: {
+        _13 = copy (_1.0: &mut {async block@src/bin/case1.rs:21:1: 21:15});
+        _12 = discriminant((*_13));
+        switchInt(move _12) -> [0: bb1, 1: bb15, 2: bb14, 3: bb13, otherwise: bb7];
+    }
+
+    bb1: {
+        _3 = case1() -> [return: bb2, unwind: bb12];
+    }
+
+    bb2: {
+        _4 = <{async fn body of case1()} as std::future::IntoFuture>::into_future(move _3) -> [return: bb3, unwind: bb12];
+    }
+
+    bb3: {
+        (((*_13) as variant#3).0: {async fn body of case1()}) = move _4;
+        goto -> bb4;
+    }
+
+    bb4: {
+        _7 = &mut (((*_13) as variant#3).0: {async fn body of case1()});
+        _6 = Pin::<&mut {async fn body of case1()}>::new_unchecked(copy _7) -> [return: bb5, unwind: bb11];
+    }
+
+    bb5: {
+        _8 = copy _2;
+        _5 = <{async fn body of case1()} as futures::Future>::poll(move _6, copy _8) -> [return: bb6, unwind: bb11];
+    }
+
+    bb6: {
+        _9 = discriminant(_5);
+        switchInt(move _9) -> [0: bb9, 1: bb8, otherwise: bb7];
+    }
+
+    bb7: {
+        unreachable;
+    }
+
+    bb8: {
+        _0 = Poll::<()>::Pending;
+        discriminant((*_13)) = 3;
+        return;
+    }
+
+    bb9: {
+        _10 = copy ((_5 as Ready).0: ());
+        drop((((*_13) as variant#3).0: {async fn body of case1()})) -> [return: bb10, unwind: bb12];
+    }
+
+    bb10: {
+        _0 = Poll::<()>::Ready(copy _10);
+        discriminant((*_13)) = 1;
+        return;
+    }
+
+    bb11 (cleanup): {
+        drop((((*_13) as variant#3).0: {async fn body of case1()})) -> [return: bb12, unwind terminate(cleanup)];
+    }
+
+    bb12 (cleanup): {
+        discriminant((*_13)) = 2;
+        resume;
+    }
+
+    bb13: {
+        _11 = move _2;
+        _2 = move _11;
+        goto -> bb4;
+    }
+
+    bb14: {
+        assert(const false, "`async fn` resumed after panicking") -> [success: bb14, unwind continue];
+    }
+
+    bb15: {
+        assert(const false, "`async fn` resumed after completion") -> [success: bb15, unwind continue];
+    }
+}
