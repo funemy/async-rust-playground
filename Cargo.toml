@@ -22,5 +22,9 @@ name = "case1"
 test = false
 
 [[bin]]
+name = "case1_stm"
+test = false
+
+[[bin]]
 name = "timer"
 test = false
