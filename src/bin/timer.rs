@@ -33,6 +33,7 @@ impl Future for Timer {
     // The Executor provides a waker implementation in `cx`
     fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
         // get a mutable ref to the shared_state
+        // NOTE: this impl uses blocking `lock`
         let mut state = self.shared_state.lock().unwrap();
         if state.completed {
             // if the timer has finished
@@ -81,6 +82,8 @@ impl Timer {
         Timer { shared_state }
     }
 }
+// up until now, all code are for timers to complete
+// no concurrency between async tasks
 
 // Executor for Timer
 // The task queue of the executor is modelled by a channel.
@@ -183,5 +186,6 @@ fn main() {
         Timer::new(Duration::from_secs(2)).await;
         println!("Done");
     });
+
     executor.run()
 }
