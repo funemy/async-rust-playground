@@ -3,7 +3,6 @@ use std::time::Duration;
 use futures::executor::block_on;
 use smol::Timer;
 
-// TODO: dump this MIR
 async fn case1() {
     println!("hello");
     println!("start waiting 6s!!");
