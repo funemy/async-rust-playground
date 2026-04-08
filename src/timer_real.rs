@@ -100,12 +100,11 @@ impl Reactor {
     // repo: timer_wakers: Timer
     // a collection of responsibilities: `self.wakers`
     // Property:
-    //  for each task, if it satisfies the completion predicate, then it will eventually be woken up by the reactor
-    //  for each task, if it doesn't satisfy the completion predicate, it will be kept by the reactor.
+    //  For each task, if it satisfies the completion predicate, then it will eventually be woken up by the reactor.
+    //  For each task, if it doesn't satisfy the completion predicate, it will be kept by the reactor.
     // Strengthen version:
-    //  if a task is woken up, it must have satisfied it's predicate
-    //  if a task is not woken up by the end of an iteration, it must have been kept into the next iteration
-    //  for all tasks in the `wakers` at the start of each iterations, they must either be woken up or be kept to the next iteration
+    //  If a task is woken up, it must have satisfied its predicate.
+    //  If a task is not woken up by the end of an iteration, it must be kept into the next iteration.
     // Strengthen Strengthen version:
     //  For all tasks satisfying their predicate at the start of the loop, they must be woken up at the current iteration.
     //  For all tasks not woken up at the end of an iteration, they must be kept to the next iteration.
